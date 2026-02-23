@@ -837,7 +837,7 @@ def build(
                     num_failed += 1
                     continue
 
-            if not installable.is_installed():
+            if not installable.is_installed() and not was_temp_installed:
                 _LOGGER.info("%s is not installed, unable to build", installable.name)
                 num_skipped += 1
             else:
