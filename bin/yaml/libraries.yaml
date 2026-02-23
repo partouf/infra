@@ -2451,10 +2451,10 @@ libraries:
       prebuild_script_pwsh:
       - echo "prebuild not using abseil"
       repo: google/re2
+      staticliblink:
+      - re2
       targets:
-      - name: '2024-07-02'
-        staticliblink:
-        - re2
+      - '2024-07-02'
       - '2025-07-17'
       type: github
     reactive_plus_plus:
