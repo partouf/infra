@@ -81,13 +81,15 @@ class TestHandleProdMissingDiscovery(unittest.TestCase):
 
     @patch("lib.blue_green_deploy.get_release_without_discovery_check")
     @patch("lib.blue_green_deploy.copy_discovery_to_prod")
+    @patch("lib.blue_green_deploy.check_compiler_discovery")
     @patch("lib.blue_green_deploy.discovery_exists")
     @patch("builtins.input", return_value="1")
     @patch("builtins.print")
-    def test_beta_available_copy(self, mock_print, _mock_input, mock_exists, mock_copy, mock_get):
+    def test_beta_available_copy(self, mock_print, _mock_input, mock_exists, mock_check, mock_copy, mock_get):
         """When only beta has discovery and user picks copy, should copy from beta."""
         mock_exists.side_effect = lambda env, _ver: env == "beta"
         mock_copy.return_value = True
+        mock_check.return_value = MagicMock()
         mock_get.return_value = MagicMock()
         deploy = self._make_deployment()
 
